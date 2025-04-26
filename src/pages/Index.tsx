@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import MoodMap from '@/components/MoodMap';
 import TrackDetail from '@/components/TrackDetail';
@@ -8,6 +7,7 @@ import { sampleTracks, playlists, Track } from '@/data/sampleTracks';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
+import { Music } from 'lucide-react';
 
 const Index = () => {
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null);
@@ -33,15 +33,20 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-border bg-gradient-to-r from-background to-muted py-6 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-display text-foreground font-bold">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary">
-                Mood Map
-              </span>
-            </h1>
-            <p className="text-sm text-muted-foreground mt-1">
-              Explore music through the lens of emotion and data
-            </p>
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-full bg-primary/10">
+              <Music className="w-6 h-6 text-primary" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-display text-foreground font-bold">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary">
+                  Music Mood Map
+                </span>
+              </h1>
+              <p className="text-sm text-muted-foreground mt-1">
+                Explore music through the lens of emotion and data
+              </p>
+            </div>
           </div>
         </div>
       </header>
@@ -49,17 +54,17 @@ const Index = () => {
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
         <Tabs defaultValue="map" value={activeTab} onValueChange={setActiveTab}>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-            <TabsList>
-              <TabsTrigger value="map">Mood Map</TabsTrigger>
-              <TabsTrigger value="analytics">Analytics</TabsTrigger>
-              <TabsTrigger value="playlists">Playlists</TabsTrigger>
+            <TabsList className="bg-card">
+              <TabsTrigger value="map" className="data-[state=active]:bg-primary/20">Mood Map</TabsTrigger>
+              <TabsTrigger value="analytics" className="data-[state=active]:bg-primary/20">Analytics</TabsTrigger>
+              <TabsTrigger value="playlists" className="data-[state=active]:bg-primary/20">Playlists</TabsTrigger>
             </TabsList>
           </div>
           
           <TabsContent value="map" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className={cn("lg:col-span-3", selectedTrack && "lg:col-span-2")}>
-                <h2 className="text-xl font-display font-semibold mb-3">Visual Mood Map</h2>
+                <h2 className="text-xl font-display font-semibold mb-3">Visual Music Mood Map</h2>
                 <p className="text-sm text-muted-foreground mb-4">
                   Explore our musical universe where each point represents a track positioned by its emotional qualities. 
                   Click on any point to discover more.
@@ -84,7 +89,7 @@ const Index = () => {
             
             <div>
               <Separator className="my-6" />
-              <h2 className="text-xl font-display font-semibold mb-4">Understanding the Mood Map</h2>
+              <h2 className="text-xl font-display font-semibold mb-4">Understanding the Music Mood Map</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <h3 className="text-lg font-medium">The Emotional Coordinates</h3>
@@ -136,7 +141,7 @@ const Index = () => {
           </TabsContent>
           
           <TabsContent value="analytics">
-            <h2 className="text-xl font-display font-semibold mb-4">Mood Trends & Insights</h2>
+            <h2 className="text-xl font-display font-semibold mb-4">Musical Mood Trends & Insights</h2>
             <MoodAnalytics tracks={sampleTracks} />
           </TabsContent>
           
@@ -162,7 +167,7 @@ const Index = () => {
       <footer className="border-t border-border py-6 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-sm text-muted-foreground">
-            Mood Map - A data-driven exploration of music and emotion
+            Music Mood Map - A data-driven exploration of music and emotion
           </p>
           <p className="text-xs text-muted-foreground mt-1">
             Visualizing the emotional landscape of music through audio features
